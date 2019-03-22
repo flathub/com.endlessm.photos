@@ -4,46 +4,6 @@
     "runtime-version": "3.32",
     "sdk": "org.gnome.Sdk",
     "command": "eos-photos",
-    "sdk-extensions": [
-        "org.freedesktop.Sdk.Extension.gfortran-62"
-    ],
-    "finish-args": [
-        "--share=ipc", "--share=network",
-        "--socket=x11", "--socket=wayland",
-        "--device=dri",
-        "--filesystem=home",
-        "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
-        "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
-     ],
-    "build-options": {
-	"append-path": "/usr/lib/sdk/gfortran-62/bin"
-    },
-    "cleanup": [
-        "/include",
-        "/lib/pkgconfig",
-        "/share/aclocal",
-        "/share/doc",
-        "/share/gir-1.0",
-        "*.la"
-    ],
-    "modules": [
-        {
-            "name": "gfortran",
-            "buildsystem": "simple",
-            "build-commands": [ "/usr/lib/sdk/gfortran-62/install.sh" ]
-        },
-        {
-            "name": "lapack",
-            "buildsystem": "cmake",
-            "builddir": true,
-            "config-opts": [
-                "-DCMAKE_BUILD_TYPE=Release",
-                "-DBUILD_SHARED_LIBS=ON",
-                "-DBUILD_TESTING=OFF",
-                "-DCMAKE_Fortran_COMPILER=/usr/lib/sdk/gfortran-62/bin/gfortran",
-                "-DLAPACKE=ON",
-                "-DCBLAS=ON"
-            ],
             "sources": [
                 {
                     "type": "archive",
