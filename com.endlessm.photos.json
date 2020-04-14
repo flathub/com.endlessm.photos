@@ -1,23 +1,16 @@
 {
     "app-id": "com.endlessm.photos",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "3.28",
+    "runtime-version": "3.36",
     "sdk": "org.gnome.Sdk",
     "command": "eos-photos",
-    "sdk-extensions": [
-        "org.freedesktop.Sdk.Extension.gfortran-62"
-    ],
     "finish-args": [
         "--share=ipc", "--share=network",
         "--socket=x11", "--socket=wayland",
         "--device=dri",
         "--filesystem=home",
-        "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
-        "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+        "--metadata=X-DConf=migrate-path=/com/endlessm/photos/"
      ],
-    "build-options": {
-	"append-path": "/usr/lib/sdk/gfortran-62/bin"
-    },
     "cleanup": [
         "/include",
         "/lib/pkgconfig",
@@ -27,11 +20,7 @@
         "*.la"
     ],
     "modules": [
-        {
-            "name": "gfortran",
-            "buildsystem": "simple",
-            "build-commands": [ "/usr/lib/sdk/gfortran-62/install.sh" ]
-        },
+        "shared-modules/dbus-glib/dbus-glib-0.110.json",
         {
             "name": "lapack",
             "buildsystem": "cmake",
@@ -40,7 +29,7 @@
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-DBUILD_SHARED_LIBS=ON",
                 "-DBUILD_TESTING=OFF",
-                "-DCMAKE_Fortran_COMPILER=/usr/lib/sdk/gfortran-62/bin/gfortran",
+                "-DCMAKE_Fortran_COMPILER=gfortran",
                 "-DLAPACKE=ON",
                 "-DCBLAS=ON"
             ],
@@ -57,22 +46,13 @@
             "name": "python3-numpy",
             "buildsystem": "simple",
             "build-commands": [
-                "python3 setup.py build -j 0",
-                "python3 setup.py install --prefix=/app --root=/ --optimize=1"
+                "pip3 install --no-index --find-links=\"file://${PWD}\" --install-option=\"--prefix=${FLATPAK_DEST}\" numpy"
             ],
-            "build-options": {
-                "env": {
-                    "ATLAS": "None",
-                    "BLAS": "/app/lib",
-                    "LAPACK": "/app/lib"
-                }
-            },
-            "cleanup": [ "/bin" ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://pypi.python.org/packages/0b/66/86185402ee2d55865c675c06a5cfef742e39f4635a4ce1b1aefd20711c13/numpy-1.14.2.zip",
-                    "sha256": "facc6f925c3099ac01a1f03758100772560a0b020fb9d70f210404be08006bcb"
+                    "type": "file",
+                    "url": "https://github.com/numpy/numpy/releases/download/v1.16.5/numpy-1.16.5.zip",
+                    "sha256": "8bb452d94e964b312205b0de1238dd7209da452343653ab214b5d681780e7a0c"
                 }
             ]
         },
@@ -156,7 +136,14 @@
                     "type": "git",
                     "url": "https://github.com/endlessm/eos-photos",
                     "tag": "1.0.2"
+                },
+                {
+                    "type": "file",
+                    "path": "com.endlessm.photos-128.png"
                 }
+            ],
+            "post-install": [
+                "install -Dm644 com.endlessm.photos-128.png  /app/share/icons/hicolor/128x128/apps/com.endlessm.photos.png"
             ]
         }
     ]
