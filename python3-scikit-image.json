@@ -10,8 +10,13 @@
     "sources": [
         {
             "type": "file",
-            "url": "https://pypi.python.org/packages/83/2a/c5a39c12c196c19a443fa4d17c0768a24231e46ae952930a9d66bad45557/scikit-image-0.13.1.tar.gz",
-            "sha256": "353879ddf7483f4621872c49cd9bc8a0ad1c3154ac0670b70799922f4cb899e8"
+            "url": "https://files.pythonhosted.org/packages/ea/59/c6d568a309cf4c1b8e091bd8630c590a57f2e068a8e4114e1f36ee0d8e4f/imageio-2.8.0.tar.gz",
+            "sha256": "fb5fd6d3d17126bbaac9af29fe340e2c97a196eb9416d4f28c0e543744a152cf"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/07/ed/58a5157aa484c6aa4e33d4190fa235ce0c4a78010ddf592af4fc257b539f/scikit-image-0.16.2.tar.gz",
+            "sha256": "dd7fbd32da74d4e9967dc15845f731f16e7966cee61f5dc0e12e2abb1305068c"
         }
     ]
 }
