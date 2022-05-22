@@ -377,16 +377,16 @@
         ]
 	},
 	{
-        "name": "python3-python-dbusmock",
+        "name": "python3-dbus-python",
         "buildsystem": "simple",
         "build-commands": [
-            "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} python-dbusmock"
+            "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} dbus-python"
         ],
         "sources": [
             {
-                "type": "archive",
-                "url": "https://files.pythonhosted.org/packages/d0/89/54ef3030f6a0ee5557d0c411085b8f76541c3595404c4879f8f109351eb9/python-dbusmock-0.27.5.tar.gz",
-                "sha256": "0bff30d8d01e7eef491f75d359c87765abba7001307fa8fed19cb59f06ed3c2a"
+                "type": "file",
+                "url": "https://files.pythonhosted.org/packages/b1/5c/ccfc167485806c1936f7d3ba97db6c448d0089c5746ba105b6eb22dba60e/dbus-python-1.2.18.tar.gz",
+                "sha256": "92bdd1e68b45596c833307a5ff4b217ee6929a1502f5341bae28fd120acf7260"
 			}
         ]
 	},
@@ -398,7 +398,7 @@
         ],
         "sources": [
             {
-                "type": "archive",
+                "type": "file",
                 "url": "https://files.pythonhosted.org/packages/d0/89/54ef3030f6a0ee5557d0c411085b8f76541c3595404c4879f8f109351eb9/python-dbusmock-0.27.5.tar.gz",
                 "sha256": "0bff30d8d01e7eef491f75d359c87765abba7001307fa8fed19cb59f06ed3c2a"
             }
