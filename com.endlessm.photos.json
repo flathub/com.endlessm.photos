@@ -1,12 +1,14 @@
 {
     "app-id": "com.endlessm.photos",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "3.36",
+    "runtime-version": "42",
     "sdk": "org.gnome.Sdk",
     "command": "eos-photos",
     "finish-args": [
-        "--share=ipc", "--share=network",
-        "--socket=x11", "--socket=wayland",
+        "--share=ipc",
+        "--share=network",
+        "--socket=x11",
+        "--socket=wayland",
         "--device=dri",
         "--filesystem=home",
         "--metadata=X-DConf=migrate-path=/com/endlessm/photos/"
@@ -20,7 +22,7 @@
         "*.la"
     ],
     "modules": [
-        "shared-modules/dbus-glib/dbus-glib-0.110.json",
+        "shared-modules/dbus-glib/dbus-glib.json",
         {
             "name": "lapack",
             "buildsystem": "cmake",
@@ -36,59 +38,24 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://www.netlib.org/lapack/lapack-3.8.0.tar.gz",
-                    "sha512": "17786cb7306fccdc9b4a242de7f64fc261ebe6a10b6ec55f519deb4cb673cb137e8742aa5698fd2dc52f1cd56d3bd116af3f593a01dcf6770c4dcc86c50b2a7f"
+                    "url": "https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.10.1.tar.gz",
+                    "sha512": "0500bbbb48483208c0a35b74972ff0059c389da6032824a2079637266a99fa980882eedf7f1fc490219ee4ff27812ac8c6afe118e25f40a9c2387e7b997762fb"
                 }
             ],
             "cleanup": [ "/lib/cmake" ]
         },
         {
-            "name": "python3-numpy",
-            "buildsystem": "simple",
-            "build-commands": [
-                "pip3 install --no-index --find-links=\"file://${PWD}\" --install-option=\"--prefix=${FLATPAK_DEST}\" numpy"
-            ],
-            "sources": [
-                {
-                    "type": "file",
-                    "url": "https://github.com/numpy/numpy/releases/download/v1.16.5/numpy-1.16.5.zip",
-                    "sha256": "8bb452d94e964b312205b0de1238dd7209da452343653ab214b5d681780e7a0c"
-                }
-            ]
-        },
-        {
-            "name": "python3-scipy",
-            "buildsystem": "simple",
-            "build-commands": [
-                "python3 setup.py build -j 0",
-                "python3 setup.py install --prefix=/app --root=/ --optimize=1"
-            ],
-            "build-options": {
-                "env": {
-                    "ATLAS": "None",
-                    "BLAS": "/app/lib",
-                    "LAPACK": "/app/lib",
-                    "LDFLAGS": "-shared"
-                }
-            },
+            "name": "qhull",
+            "buildsystem": "cmake-ninja",
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://pypi.python.org/packages/bd/f4/3882758754dc083fea6ea66a6e8ceef55e7df173d06a12a074612958800f/scipy-1.0.1.tar.gz",
-                    "sha256": "8739c67842ed9a1c34c62d6cca6301d0ade40d50ef14ba292bd331f0d6c940ba"
+                    "url": "http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz",
+                    "sha256": "b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e"
                 }
             ]
         },
-        "python3-Pillow.json",
-        "python3-setuptools_scm.json",
-        "python3-six.json",
-        "python3-matplotlib.json",
-        "python3-networkx.json",
-        "python3-PyWavelets.json",
-        "python3-scikit-image.json",
-        "python3-dbus-python.json",
-        "python3-python-dbusmock.json",
-        "python3-requests.json",
+        "python-requirements.json",
         {
             "name": "eos-metrics",
             "config-opts": [
@@ -97,9 +64,9 @@
             ],
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://github.com/endlessm/eos-metrics",
-                    "commit": "ab66c7319c573999740f636555b14b6f658e82c0"
+                    "type": "archive",
+                    "url": "https://github.com/endlessm/eos-metrics/archive/refs/tags/Release_4.0.6.tar.gz",
+                    "sha256": "2652236d39072270c24a69586236ee0cce8a5ad2c9de83dc25955a29960cf704"
                 }
             ]
         },
@@ -123,9 +90,9 @@
             ],
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://github.com/endlessm/eos-sdk",
-                    "commit": "90342f56a3dd5afa7825f00001562843eebcb749"
+                    "type": "archive",
+                    "url": "https://github.com/endlessm/eos-sdk/archive/refs/tags/Release_3.3.20.tar.gz",
+                    "sha256": "a78a585656395b375bee09d9b328f2a07312aad87ad9a15dd0e992d426a1edff"
                 }
             ]
         },
@@ -133,9 +100,9 @@
             "name": "eos-photos",
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://github.com/endlessm/eos-photos",
-                    "tag": "1.0.2"
+                    "type": "archive",
+                    "url": "https://github.com/endlessm/eos-photos/archive/refs/tags/1.0.2.tar.gz",
+                    "sha256": "17b021ca9f7a764c6e20f1026661a7357b39d8cefb7a76470aeba26852788123"
                 },
                 {
                     "type": "file",
