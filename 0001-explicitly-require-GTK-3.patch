@@ -1,0 +1,35 @@
+From 6b405f9a804f393fcfb309fc7a1d32c5ba4b2568 Mon Sep 17 00:00:00 2001
+From: Andrej Shadura <andrew.shadura@collabora.co.uk>
+Date: Tue, 28 Dec 2021 09:01:28 +0100
+Subject: [PATCH] Explicitly require GTK 3 to prevent GTK 4 from being loaded
+
+When GTK 4 is installed concurrently with GTK 3, importing Gtk will
+result in GTK 4 being loaded. However, GTK 3 will be required later
+by other dependencies, resulting in a conflict:
+
+    Requiring namespace 'Gtk' version '3.0', but '4.0' is already loaded
+
+To prevent this from happening, explicitly require GTK 3 until the app
+is ported to support GTK 4.
+
+Signed-off-by: Andrej Shadura <andrew.shadura@collabora.co.uk>
+---
+ src/endless_photos.py | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/endless_photos.py b/src/endless_photos.py
+index f304100..797e822 100644
+--- a/src/endless_photos.py
++++ b/src/endless_photos.py
+@@ -1,6 +1,8 @@
+ import sys
+ import os
+ import inspect
++import gi
++gi.require_version('Gtk', '3.0')
+ from gi.repository import Gtk, Gdk, GLib, GtkClutter, GObject, Gio, Endless
+ 
+ from .photos_model import PhotosModel
+-- 
+2.36.1
+

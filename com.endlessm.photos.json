@@ -18,10 +18,12 @@
         "/lib/pkgconfig",
         "/share/aclocal",
         "/share/doc",
+        "/share/man",
         "/share/gir-1.0",
         "*.la"
     ],
     "modules": [
+        "shared-modules/clutter/clutter.json",
         "shared-modules/dbus-glib/dbus-glib.json",
         {
             "name": "lapack",
@@ -103,6 +105,10 @@
                     "type": "archive",
                     "url": "https://github.com/endlessm/eos-photos/archive/refs/tags/1.0.2.tar.gz",
                     "sha256": "17b021ca9f7a764c6e20f1026661a7357b39d8cefb7a76470aeba26852788123"
+                },
+                {
+                    "type":"patch",
+                    "path":"0001-explicitly-require-GTK-3.patch"
                 },
                 {
                     "type": "file",
