@@ -89,13 +89,9 @@
             "name": "eos-photos",
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://github.com/endlessm/eos-photos/archive/refs/tags/1.0.2.tar.gz",
-                    "sha256": "17b021ca9f7a764c6e20f1026661a7357b39d8cefb7a76470aeba26852788123"
-                },
-                {
-                    "type":"patch",
-                    "path":"0001-explicitly-require-GTK-3.patch"
+                    "type": "git",
+                    "url": "https://github.com/endlessm/eos-photos.git",
+                    "commit": "b69e029f393eabd1dbcbfcc9011ecec057011886"
                 },
                 {
                     "type": "file",
