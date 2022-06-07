@@ -59,20 +59,6 @@
         },
         "python-requirements.json",
         {
-            "name": "eos-metrics",
-            "config-opts": [
-                "--disable-gtk-doc",
-                "--disable-gir-doc"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/endlessm/eos-metrics/archive/refs/tags/Release_4.0.6.tar.gz",
-                    "sha256": "2652236d39072270c24a69586236ee0cce8a5ad2c9de83dc25955a29960cf704"
-                }
-            ]
-        },
-        {
             "name": "eos-sdk",
             "build-options": {
                 "env": {
@@ -82,6 +68,7 @@
                     "--disable-gtk-doc",
                     "--disable-gir-doc",
                     "--disable-js-doc",
+                    "--disable-metrics",
                     "--disable-webhelper"
                 ]
             },
