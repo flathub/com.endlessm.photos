@@ -94,6 +94,10 @@
                     "commit": "b69e029f393eabd1dbcbfcc9011ecec057011886"
                 },
                 {
+                    "type": "patch",
+                    "path": "force-gtk3.patch"
+                },
+                {
                     "type": "file",
                     "path": "com.endlessm.photos-128.png"
                 }

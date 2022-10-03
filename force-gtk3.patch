@@ -1,0 +1,196 @@
+From 9aacc1db3deb144e1e485e6c5e46a072a715f6c0 Mon Sep 17 00:00:00 2001
+From: Will Thompson <wjt@endlessos.org>
+Date: Mon, 3 Oct 2022 09:46:49 +0100
+Subject: [PATCH] Specify GTK 3 more widely
+
+May fix #330
+---
+ src/drop_shadow_alignment.py               | 2 ++
+ src/photos_category_toolbars.py            | 2 ++
+ src/photos_image_container.py              | 2 ++
+ src/photos_left_toolbar.py                 | 2 ++
+ src/photos_presenter.py                    | 2 ++
+ src/photos_right_toolbar.py                | 2 ++
+ src/photos_view.py                         | 2 ++
+ src/photos_window.py                       | 2 ++
+ src/share/facebook_auth_dialog.py          | 2 ++
+ src/splash_screen.py                       | 2 ++
+ src/widgets/composite_button.py            | 2 ++
+ src/widgets/image_text_button.py           | 2 ++
+ src/widgets/option_list.py                 | 2 ++
+ src/widgets/preview_file_chooser_dialog.py | 2 ++
+ src/widgets/slider.py                      | 2 ++
+ src/widgets/text_entry.py                  | 2 ++
+ 16 files changed, 32 insertions(+)
+
+diff --git a/src/drop_shadow_alignment.py b/src/drop_shadow_alignment.py
+index 65dfe47..1f6b8cd 100644
+--- a/src/drop_shadow_alignment.py
++++ b/src/drop_shadow_alignment.py
+@@ -1,6 +1,8 @@
+ import cairo
+ import math
+ 
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import Gtk,Gdk
+ 
+ class DropShadowAlignment(Gtk.Alignment):
+diff --git a/src/photos_category_toolbars.py b/src/photos_category_toolbars.py
+index f66a619..eee64a9 100644
+--- a/src/photos_category_toolbars.py
++++ b/src/photos_category_toolbars.py
+@@ -1,4 +1,6 @@
+ # -*- coding: utf-8 -*-
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import Gtk
+ 
+ from .widgets.option_list import OptionList
+diff --git a/src/photos_image_container.py b/src/photos_image_container.py
+index f085eca..2cb85c6 100644
+--- a/src/photos_image_container.py
++++ b/src/photos_image_container.py
+@@ -1,3 +1,5 @@
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import GtkClutter, Clutter
+ 
+ 
+diff --git a/src/photos_left_toolbar.py b/src/photos_left_toolbar.py
+index 952310b..ec35862 100644
+--- a/src/photos_left_toolbar.py
++++ b/src/photos_left_toolbar.py
+@@ -1,5 +1,7 @@
+ import collections
+ import cairo
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import Gtk, Gdk, GdkPixbuf
+ 
+ from .widgets.composite_button import CompositeButton
+diff --git a/src/photos_presenter.py b/src/photos_presenter.py
+index eac2eb1..36807fd 100644
+--- a/src/photos_presenter.py
++++ b/src/photos_presenter.py
+@@ -4,6 +4,8 @@
+ import tempfile
+ import urllib.request, urllib.error, urllib.parse
+ import time
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import GLib, Gtk, Gio
+ 
+ from .asyncworker import AsyncWorker
+diff --git a/src/photos_right_toolbar.py b/src/photos_right_toolbar.py
+index 4e2ecc1..659c06b 100644
+--- a/src/photos_right_toolbar.py
++++ b/src/photos_right_toolbar.py
+@@ -1,3 +1,5 @@
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import Endless, Gtk, Gio
+ 
+ from .widgets.image_text_button import ImageTextButton
+diff --git a/src/photos_view.py b/src/photos_view.py
+index fec9028..0c4b0c1 100644
+--- a/src/photos_view.py
++++ b/src/photos_view.py
+@@ -1,3 +1,5 @@
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import Gtk, Gdk, GLib
+ 
+ from .splash_screen import SplashScreen
+diff --git a/src/photos_window.py b/src/photos_window.py
+index 3078af6..2ec7d86 100644
+--- a/src/photos_window.py
++++ b/src/photos_window.py
+@@ -1,3 +1,5 @@
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import Gtk, Gdk, GdkPixbuf, Endless
+ 
+ from .drop_shadow_alignment import DropShadowAlignment
+diff --git a/src/share/facebook_auth_dialog.py b/src/share/facebook_auth_dialog.py
+index eca9d2f..09f9066 100644
+--- a/src/share/facebook_auth_dialog.py
++++ b/src/share/facebook_auth_dialog.py
+@@ -1,4 +1,6 @@
+ import urllib.request, urllib.parse, urllib.error
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import Gtk, WebKit2
+ 
+ 
+diff --git a/src/splash_screen.py b/src/splash_screen.py
+index 75358aa..ac5a32e 100644
+--- a/src/splash_screen.py
++++ b/src/splash_screen.py
+@@ -1,3 +1,5 @@
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import Gtk
+ 
+ from .widgets.image_text_button import ImageTextButton
+diff --git a/src/widgets/composite_button.py b/src/widgets/composite_button.py
+index 6035b28..be5268f 100644
+--- a/src/widgets/composite_button.py
++++ b/src/widgets/composite_button.py
+@@ -1,3 +1,5 @@
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import Gtk
+ 
+ 
+diff --git a/src/widgets/image_text_button.py b/src/widgets/image_text_button.py
+index 554067c..8d64b26 100644
+--- a/src/widgets/image_text_button.py
++++ b/src/widgets/image_text_button.py
+@@ -1,3 +1,5 @@
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import Gtk, GdkPixbuf, Gdk
+ from .composite_button import CompositeButton
+ 
+diff --git a/src/widgets/option_list.py b/src/widgets/option_list.py
+index 83854c2..744c3e3 100644
+--- a/src/widgets/option_list.py
++++ b/src/widgets/option_list.py
+@@ -1,3 +1,5 @@
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import Gtk
+ 
+ from .composite_button import CompositeButton
+diff --git a/src/widgets/preview_file_chooser_dialog.py b/src/widgets/preview_file_chooser_dialog.py
+index 920145a..585172a 100644
+--- a/src/widgets/preview_file_chooser_dialog.py
++++ b/src/widgets/preview_file_chooser_dialog.py
+@@ -1,4 +1,6 @@
+ import os
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import Gtk, Gdk, GdkPixbuf
+ 
+ 
+diff --git a/src/widgets/slider.py b/src/widgets/slider.py
+index 1e96a42..1210f20 100644
+--- a/src/widgets/slider.py
++++ b/src/widgets/slider.py
+@@ -1,3 +1,5 @@
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import Gtk, Gdk
+ 
+ class Slider(Gtk.HScale):
+diff --git a/src/widgets/text_entry.py b/src/widgets/text_entry.py
+index 9f5fc5e..6920867 100644
+--- a/src/widgets/text_entry.py
++++ b/src/widgets/text_entry.py
+@@ -1,3 +1,5 @@
++import gi
++gi.require_version("Gtk", "3.0")
+ from gi.repository import Gtk, Gdk
+ 
+ 
