@@ -98,6 +98,14 @@
                     "path": "force-gtk3.patch"
                 },
                 {
+                    "type": "patch",
+                    "path": "force-gdk-3.0.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "webkit2-4.1.patch"
+                },
+                {
                     "type": "file",
                     "path": "com.endlessm.photos-128.png"
                 }

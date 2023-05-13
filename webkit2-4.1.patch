@@ -1,0 +1,27 @@
+From 75c248cd941d89385633c31e7333653371ed1239 Mon Sep 17 00:00:00 2001
+From: bbhtt <bbhtt.zn0i8@slmail.me>
+Date: Sat, 13 May 2023 08:20:37 +0530
+Subject: [PATCH 2/2] Use webkit2-4.1 when available
+
+---
+ src/share/facebook_auth_dialog.py | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/share/facebook_auth_dialog.py b/src/share/facebook_auth_dialog.py
+index 09f9066..32b787c 100644
+--- a/src/share/facebook_auth_dialog.py
++++ b/src/share/facebook_auth_dialog.py
+@@ -1,6 +1,10 @@
+ import urllib.request, urllib.parse, urllib.error
+ import gi
+ gi.require_version("Gtk", "3.0")
++try:
++    gi.require_version('WebKit2', '4.1')
++except ValueError:
++    gi.require_version('WebKit2', '4.0')
+ from gi.repository import Gtk, WebKit2
+ 
+ 
+-- 
+2.40.1
+

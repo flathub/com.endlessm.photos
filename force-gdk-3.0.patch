@@ -1,0 +1,242 @@
+From 783fb55520fb3da49da13f3a0e29540fffd2c52f Mon Sep 17 00:00:00 2001
+From: bbhtt <bbhtt.zn0i8@slmail.me>
+Date: Sat, 13 May 2023 08:18:15 +0530
+Subject: [PATCH 1/2] Specify Gdk version
+
+---
+ src/draggable_box.py                       | 15 ++++++++-------
+ src/drop_shadow_alignment.py               |  1 +
+ src/endless_photos.py                      |  1 +
+ src/photos_image_widget.py                 |  4 +++-
+ src/photos_left_toolbar.py                 |  1 +
+ src/photos_view.py                         |  1 +
+ src/photos_window.py                       |  1 +
+ src/util.py                                |  2 ++
+ src/widgets/image_text_button.py           |  1 +
+ src/widgets/preview_file_chooser_dialog.py |  1 +
+ src/widgets/slider.py                      |  7 ++++---
+ src/widgets/text_entry.py                  |  1 +
+ 12 files changed, 25 insertions(+), 11 deletions(-)
+
+diff --git a/src/draggable_box.py b/src/draggable_box.py
+index 7c898ca..3604075 100644
+--- a/src/draggable_box.py
++++ b/src/draggable_box.py
+@@ -1,6 +1,7 @@
+ import os
+ import inspect
+-
++import gi
++gi.require_version("Gdk", "3.0")
+ from gi.repository import Clutter, Gdk
+ 
+ from . import util
+@@ -60,7 +61,7 @@ CURRENT_DIR = os.path.dirname(CURRENT_FILE)
+ BASE_IMAGE_PATH = os.path.join(CURRENT_DIR, os.pardir) + '/data/images/'
+ 
+ class DraggableBox(Clutter.Actor):
+-    
++
+     def __init__(self, stage, **kw):
+         kw["opacity"] = 0
+         kw["reactive"] = True
+@@ -122,7 +123,7 @@ class DraggableBox(Clutter.Actor):
+             self.height_as_pct = bot_coord / real_height - self.y_pos_as_pct
+ 
+     def reset_dimensions(self):
+-        # The box will store its position/dimensions as percentages of the total stage, 
++        # The box will store its position/dimensions as percentages of the total stage,
+         # (values between 0 and 1) so that upon stage resizing/rotation, its dimensions
+         # can be reconstructed faithfully
+         self.x_pos_as_pct = (1 - DEFAULT_PROPORTION) / 2
+@@ -361,9 +362,9 @@ class DraggableBox(Clutter.Actor):
+ 
+             # All the boxes have their namesake's edge bound to the same
+             # named edge of the stage, and have the opposite side bound to their
+-            # namesake's edge of CROP. 
++            # namesake's edge of CROP.
+             #
+-            # For example, LEFT's left side is bound to the left edge of 
++            # For example, LEFT's left side is bound to the left edge of
+             # the stage, and LEFT's right side is bound to the left side of CROP
+ 
+             cropbox_constraint = Clutter.SnapConstraint()
+@@ -497,7 +498,7 @@ class DraggableBox(Clutter.Actor):
+             elif clicked_region & BOT:
+                 self.set_height(self.get_height() + dy)
+         else:
+-            # If the click happened away from either horizontal or 
++            # If the click happened away from either horizontal or
+             # vertical edges, just drag the box around
+             self.set_x(self.get_x() + dx)
+             self.set_y(self.get_y() + dy)
+@@ -506,7 +507,7 @@ class DraggableOrnament(Clutter.Group):
+     """
+     Base class for an object which forwards mouse events to the crop box. The hitbox actor is kept
+     separate from any other visual actors so that the ornament can receieve events over a wider
+-    region than what is actually visible to the user 
++    region than what is actually visible to the user
+     """
+     def __init__(self, box, coordinate, **kw):
+         kw["reactive"] = True
+diff --git a/src/drop_shadow_alignment.py b/src/drop_shadow_alignment.py
+index 1f6b8cd..126039f 100644
+--- a/src/drop_shadow_alignment.py
++++ b/src/drop_shadow_alignment.py
+@@ -3,6 +3,7 @@ import math
+ 
+ import gi
+ gi.require_version("Gtk", "3.0")
++gi.require_version("Gdk", "3.0")
+ from gi.repository import Gtk,Gdk
+ 
+ class DropShadowAlignment(Gtk.Alignment):
+diff --git a/src/endless_photos.py b/src/endless_photos.py
+index 797e822..a9de41f 100644
+--- a/src/endless_photos.py
++++ b/src/endless_photos.py
+@@ -3,6 +3,7 @@ import os
+ import inspect
+ import gi
+ gi.require_version('Gtk', '3.0')
++gi.require_version('Gdk', '3.0')
+ from gi.repository import Gtk, Gdk, GLib, GtkClutter, GObject, Gio, Endless
+ 
+ from .photos_model import PhotosModel
+diff --git a/src/photos_image_widget.py b/src/photos_image_widget.py
+index a4c02ed..fcbc16e 100644
+--- a/src/photos_image_widget.py
++++ b/src/photos_image_widget.py
+@@ -1,3 +1,5 @@
++import gi
++gi.require_version("Gdk", "3.0")
+ from gi.repository import Clutter, GLib, Gdk, GObject
+ 
+ from .crop_overlay import CropOverlay
+@@ -44,7 +46,7 @@ class PhotosImageWidget(Clutter.Actor):
+             return self._ratio
+         else:
+             return Clutter.Actor.do_get_property(self, property)
+-    
++
+     def toggle_crop_overlay(self):
+         if self.crop_overlay_visible:
+             self.hide_crop_overlay()
+diff --git a/src/photos_left_toolbar.py b/src/photos_left_toolbar.py
+index ec35862..a88f778 100644
+--- a/src/photos_left_toolbar.py
++++ b/src/photos_left_toolbar.py
+@@ -2,6 +2,7 @@ import collections
+ import cairo
+ import gi
+ gi.require_version("Gtk", "3.0")
++gi.require_version("Gdk", "3.0")
+ from gi.repository import Gtk, Gdk, GdkPixbuf
+ 
+ from .widgets.composite_button import CompositeButton
+diff --git a/src/photos_view.py b/src/photos_view.py
+index 0c4b0c1..fd9205f 100644
+--- a/src/photos_view.py
++++ b/src/photos_view.py
+@@ -1,5 +1,6 @@
+ import gi
+ gi.require_version("Gtk", "3.0")
++gi.require_version("Gdk", "3.0")
+ from gi.repository import Gtk, Gdk, GLib
+ 
+ from .splash_screen import SplashScreen
+diff --git a/src/photos_window.py b/src/photos_window.py
+index 2ec7d86..8598d9c 100644
+--- a/src/photos_window.py
++++ b/src/photos_window.py
+@@ -1,5 +1,6 @@
+ import gi
+ gi.require_version("Gtk", "3.0")
++gi.require_version("Gdk", "3.0")
+ from gi.repository import Gtk, Gdk, GdkPixbuf, Endless
+ 
+ from .drop_shadow_alignment import DropShadowAlignment
+diff --git a/src/util.py b/src/util.py
+index 8904b6f..b8bce3c 100644
+--- a/src/util.py
++++ b/src/util.py
+@@ -1,6 +1,8 @@
+ 
+ from PIL import Image
+ import io
++import gi
++gi.require_version("Gdk", "3.0")
+ from gi.repository import Clutter, Cogl, GdkPixbuf, Gio
+ 
+ def load_clutter_image_from_resource(resource_path):
+diff --git a/src/widgets/image_text_button.py b/src/widgets/image_text_button.py
+index 8d64b26..4b84aa5 100644
+--- a/src/widgets/image_text_button.py
++++ b/src/widgets/image_text_button.py
+@@ -1,5 +1,6 @@
+ import gi
+ gi.require_version("Gtk", "3.0")
++gi.require_version("Gdk", "3.0")
+ from gi.repository import Gtk, GdkPixbuf, Gdk
+ from .composite_button import CompositeButton
+ 
+diff --git a/src/widgets/preview_file_chooser_dialog.py b/src/widgets/preview_file_chooser_dialog.py
+index 585172a..af97d2f 100644
+--- a/src/widgets/preview_file_chooser_dialog.py
++++ b/src/widgets/preview_file_chooser_dialog.py
+@@ -1,6 +1,7 @@
+ import os
+ import gi
+ gi.require_version("Gtk", "3.0")
++gi.require_version("Gdk", "3.0")
+ from gi.repository import Gtk, Gdk, GdkPixbuf
+ 
+ 
+diff --git a/src/widgets/slider.py b/src/widgets/slider.py
+index 1210f20..14a4ffc 100644
+--- a/src/widgets/slider.py
++++ b/src/widgets/slider.py
+@@ -1,9 +1,10 @@
+ import gi
+ gi.require_version("Gtk", "3.0")
++gi.require_version("Gdk", "3.0")
+ from gi.repository import Gtk, Gdk
+ 
+ class Slider(Gtk.HScale):
+-    
++
+     SNAP_MARGIN = 0.1
+ 
+     def __init__(self, adjustment=None, **kw):
+@@ -15,7 +16,7 @@ class Slider(Gtk.HScale):
+         self.DEFAULT_VALUE = adjustment.get_value()
+ 
+         self.connect('button-press-event', self._detect_double_click)
+-    
++
+     # Override default button-release event, so when
+     # user releases the mouse after a double click, the
+     # value is set to the default value rather than
+@@ -27,7 +28,7 @@ class Slider(Gtk.HScale):
+             self.set_value(self.DEFAULT_VALUE)
+ 
+     def do_value_changed(self, **kw):
+-        current_val = self.get_adjustment().get_value() 
++        current_val = self.get_adjustment().get_value()
+         dist_to_default = abs(current_val - self.DEFAULT_VALUE)
+         if dist_to_default < self.SNAP_MARGIN:
+             self.set_value(self.DEFAULT_VALUE)
+diff --git a/src/widgets/text_entry.py b/src/widgets/text_entry.py
+index 6920867..3e25794 100644
+--- a/src/widgets/text_entry.py
++++ b/src/widgets/text_entry.py
+@@ -1,5 +1,6 @@
+ import gi
+ gi.require_version("Gtk", "3.0")
++gi.require_version("Gdk", "3.0")
+ from gi.repository import Gtk, Gdk
+ 
+ 
+-- 
+2.40.1
+
