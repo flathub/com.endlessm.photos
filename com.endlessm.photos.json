@@ -91,19 +91,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/endlessm/eos-photos.git",
-                    "commit": "b69e029f393eabd1dbcbfcc9011ecec057011886"
-                },
-                {
-                    "type": "patch",
-                    "path": "force-gtk3.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "force-gdk-3.0.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "webkit2-4.1.patch"
+                    "commit": "5f80ed234dd89dcc362366ffe0cd11133a35d4fe"
                 },
                 {
                     "type": "file",
