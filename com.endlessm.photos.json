@@ -1,7 +1,7 @@
 {
     "app-id": "com.endlessm.photos",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "42",
+    "runtime-version": "43",
     "sdk": "org.gnome.Sdk",
     "command": "eos-photos",
     "finish-args": [
@@ -91,7 +91,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/endlessm/eos-photos.git",
-                    "commit": "b69e029f393eabd1dbcbfcc9011ecec057011886"
+                    "commit": "5f80ed234dd89dcc362366ffe0cd11133a35d4fe"
                 },
                 {
                     "type": "file",
